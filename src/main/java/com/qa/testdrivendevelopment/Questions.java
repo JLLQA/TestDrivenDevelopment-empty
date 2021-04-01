@@ -1,5 +1,7 @@
 package com.qa.testdrivendevelopment;
 
+import java.util.Objects;
+
 public class Questions {
 
 	/**
@@ -127,15 +129,15 @@ public class Questions {
 	 * nMid("Chocolate", 1) → "Choclate"<br>
 	 */
 	public String nMid(String input, int n) {
-		//find centre
-		int temp = (input.length()/2);
-		//find number of letters to remove either side of centre
-		int cut = (n-1)/2;
-		//make left half
-		String outa = input.substring(0,(temp-cut));
-		//make right half
-		String outb = input.substring(temp+cut+1,input.length());
-		//add the 2 halves together
+		// find centre
+		int temp = (input.length() / 2);
+		// find number of letters to remove either side of centre
+		int cut = (n - 1) / 2;
+		// make left half
+		String outa = input.substring(0, (temp - cut));
+		// make right half
+		String outb = input.substring(temp + cut + 1, input.length());
+		// add the 2 halves together
 		String out = outa + outb;
 		return out;
 	}
@@ -153,7 +155,17 @@ public class Questions {
 	 * endsJava("pythoniscool") → false <br>
 	 */
 	public boolean endsJava(String input) {
-		return false;
+		// Converts to lowercase
+		String work = input.toLowerCase();
+		// find length of word
+		int temp = input.length();
+		// length of word -4
+		int i = temp - 4;
+		// returns last 4 characters
+		String check2 = work.substring(i, input.length());
+		// checks if
+		boolean check3 = Objects.equals("java", check2);
+		return check3;
 	}
 
 	/**
@@ -168,7 +180,19 @@ public class Questions {
 	 * HINT: "a" == "a" if false HINT: "a".equals("a") is true
 	 */
 	public int superBlock(String input) {
-		return -1;
+		int count[] = new int[256];
+		int max = 0;
+		int len = input.length();
+		for (int i = 0; i < len; i++) {
+			count[input.charAt(i)]++;
+		}
+
+		for (int i = 0; i < len; i++) {
+			if (max < count[input.charAt(i)]) {
+				max = count[input.charAt(i)];
+			}
+		}
+		return max;
 	}
 
 	/**
@@ -199,7 +223,19 @@ public class Questions {
 	 * fizzBuzz(8) → null
 	 */
 	public String fizzBuzz(int number) {
-		return "";
+		int a = number % 3;
+		int b = number % 5;
+
+		String out = "";
+		if (a == 0 && b != 0) {
+			out = "fizz";
+		} else if (b == 0 && a != 0) {
+			out = "buzz";
+		} else if (a == 0 && b == 0) {
+			out = "fizzbuzz";
+		} else
+			return null;
+		return out;
 	}
 
 	/**
@@ -223,7 +259,43 @@ public class Questions {
 	 */
 
 	public int largest(String input) {
-		return -1;
+		String[] array = input.split(" ", 0);
+		int wait = 0;
+		int out = 0;
+		int outold = 0;
+		int f = 0;
+		int g = 0;
+		int h = 0;
+		for (String a : array) {
+			int len = a.length();
+			for (int i = 0; i < len; i++) {
+				char q = a.charAt(i);
+				String w = String.valueOf(q);
+				wait = Integer.parseInt(w);
+				if (i == 0) {
+					f = wait;
+				} else if (i == 2) {
+					h = wait;
+				}
+
+				else {
+					g = wait;
+				}
+			}
+			if (len > 2) {
+				out = f + g + h;
+				if (out > outold) {
+					outold = out;
+				}
+			} else {
+				out = f + g;
+				if (out > outold) {
+					outold = out;
+				}
+			}
+
+		}
+		return outold;
 	}
 
 	/**
