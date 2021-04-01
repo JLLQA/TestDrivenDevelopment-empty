@@ -14,6 +14,7 @@ public class Questions {
 	 * 
 	 */
 	public String greetingExample(String name) {
+		// System.out.println(name);
 		return "Hi " + name;
 	}
 
@@ -28,7 +29,13 @@ public class Questions {
 	 * multChar("Hi-There") → "HHHiii---TTThhheeerrreee"
 	 */
 	public String multiChar(String input) {
-		return "";
+		String[] array = input.split("", 0);
+		String out = "";
+		for (String a : array) {
+			String b = a + a + a;
+			out += b;
+		}
+		return out;
 	}
 
 	/**
@@ -45,7 +52,32 @@ public class Questions {
 	 */
 
 	public String sandwichFilling(String sandwich) {
-		return "";
+		// Converts to lowercase
+		String work = sandwich.toLowerCase();
+
+		// Counts occurences of bread in text
+		int temp = work.split("bread").length;
+
+		String out = "";
+
+		if (temp < 2) {
+			out = "";
+		} else {
+			// start of 1st bread
+			int bread = work.indexOf("bread");
+			// end of 1st bread
+			int breadend = bread + 4;
+			// start of 2nd bread
+			int bread2 = work.lastIndexOf("bread");
+
+			// from space prior to start of 2nd bread
+			// count backwards adding the letter at current
+			// space to the end of the output
+			for (int i = bread2 - 1; i > breadend; i--) {
+				out = out + sandwich.charAt(i);
+			}
+		}
+		return out;
 	}
 
 	/**
@@ -61,7 +93,26 @@ public class Questions {
 	 * evenlySpaced(4, 60, 9) → false
 	 */
 	public boolean evenlySpaced(int a, int b, int c) {
-		return false;
+		// set boolean
+		boolean bool = true;
+		// find min value
+		double x = Math.min(a, b);
+		x = Math.min(x, c);
+
+		// find max value
+		double y = Math.max(a, b);
+		y = Math.max(y, c);
+
+		// find mid point
+		double d = (x + y) / 2;
+
+		if (d == a) {
+		} else if (d == b) {
+		} else if (d == c) {
+		} else {
+			bool = !bool;
+		}
+		return bool;
 	}
 
 	/**
@@ -76,7 +127,17 @@ public class Questions {
 	 * nMid("Chocolate", 1) → "Choclate"<br>
 	 */
 	public String nMid(String input, int n) {
-    	return "";
+		//find centre
+		int temp = (input.length()/2);
+		//find number of letters to remove either side of centre
+		int cut = (n-1)/2;
+		//make left half
+		String outa = input.substring(0,(temp-cut));
+		//make right half
+		String outb = input.substring(temp+cut+1,input.length());
+		//add the 2 halves together
+		String out = outa + outb;
+		return out;
 	}
 
 	/**
@@ -92,7 +153,7 @@ public class Questions {
 	 * endsJava("pythoniscool") → false <br>
 	 */
 	public boolean endsJava(String input) {
-    	return false;
+		return false;
 	}
 
 	/**
@@ -107,7 +168,7 @@ public class Questions {
 	 * HINT: "a" == "a" if false HINT: "a".equals("a") is true
 	 */
 	public int superBlock(String input) {
-    	return -1;
+		return -1;
 	}
 
 	/**
@@ -123,7 +184,7 @@ public class Questions {
 	 * HINT: String.toLowerCase
 	 */
 	public int amISearch(String sentence) {
-    	return -1;
+		return -1;
 	}
 
 	/**
@@ -138,7 +199,7 @@ public class Questions {
 	 * fizzBuzz(8) → null
 	 */
 	public String fizzBuzz(int number) {
-    	return "";
+		return "";
 	}
 
 	/**
@@ -162,7 +223,7 @@ public class Questions {
 	 */
 
 	public int largest(String input) {
-    	return -1;
+		return -1;
 	}
 
 	/**
@@ -179,6 +240,6 @@ public class Questions {
 	 * HINT: String.charAt
 	 */
 	public boolean compares(String word, int index, char letter) {
-    	return false;
+		return false;
 	}
 }
