@@ -71,7 +71,6 @@ public class Questions {
 			int breadend = bread + 4;
 			// start of 2nd bread
 			int bread2 = work.lastIndexOf("bread");
-
 			// from space prior to start of 2nd bread
 			// count backwards adding the letter at current
 			// space to the end of the output
@@ -100,7 +99,6 @@ public class Questions {
 		// find min value
 		double x = Math.min(a, b);
 		x = Math.min(x, c);
-
 		// find max value
 		double y = Math.max(a, b);
 		y = Math.max(y, c);
@@ -186,7 +184,6 @@ public class Questions {
 		for (int i = 0; i < len; i++) {
 			count[input.charAt(i)]++;
 		}
-
 		for (int i = 0; i < len; i++) {
 			if (max < count[input.charAt(i)]) {
 				max = count[input.charAt(i)];
@@ -208,7 +205,45 @@ public class Questions {
 	 * HINT: String.toLowerCase
 	 */
 	public int amISearch(String sentence) {
-		return -1;
+		// Initialise
+		char checkst = ' ';
+		char checken = ' ';
+		int count = 0;
+		int start = 0;
+		int len = sentence.length();
+		// Converts to lower case
+		String work = sentence.toLowerCase();
+		// Counts occurrences of "am" in text for the loop
+		int temp = work.split("am").length;
+		// Checks whole sentence from for loop
+		for (int i = 0; i < temp; i++) {
+			int am = work.indexOf("am", start);
+			//index before the "am"
+			int amst = am - 1;
+			//index after the "am"
+			int amen = am + 2;
+			//if statement to avoid fringe cases of am being negative
+			if (am >= 0) {
+				// check space before "am" is blank
+				if (amst > 0) {
+					checkst = work.charAt(amst);
+				} else {
+					checkst = ' ';
+				}
+				// check space after "am" is blank
+				if (amen < len) {
+					checken = work.charAt(amen);
+				} else {
+					checken = ' ';
+				}
+				//increases a counter if am appears without any other letters
+				if (checkst == ' ' && checken == ' ') {
+					count = count + 1;
+				}
+				start = am + 2;
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -277,7 +312,6 @@ public class Questions {
 				} else if (i == 2) {
 					h = wait;
 				}
-
 				else {
 					g = wait;
 				}
@@ -293,7 +327,6 @@ public class Questions {
 					outold = out;
 				}
 			}
-
 		}
 		return outold;
 	}
@@ -312,6 +345,24 @@ public class Questions {
 	 * HINT: String.charAt
 	 */
 	public boolean compares(String word, int index, char letter) {
-		return false;
+		// Initialise
+		char check = ' ';
+		boolean bool = true;
+		// Check length of word
+		int len = word.length();
+
+		// Checks to make sure that the index falls within the word
+		// Otherwise it skips finding the character to avoid breaking
+		if (len > index) {
+			// Checks character at nth position
+			check = word.charAt(index - 1);
+			if (check == letter) {
+			} else {
+				bool = false;
+			}
+		} else {
+			bool = false;
+		}
+		return bool;
 	}
 }
